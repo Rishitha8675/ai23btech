@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: '8675@Tjc2023',
+    password: 'your_sql_password',
     database: 'vulnerable_db'
 });
 
