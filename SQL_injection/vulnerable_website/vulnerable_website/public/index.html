@@ -1,0 +1,76 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vulnerable Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            padding: 8px;
+            margin-bottom: 10px;
+            width: 100%;
+            max-width: 300px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Vulnerable Website</h1>
+
+    
+    <form action="/users" method="get">
+        <label for="search">Search Users:</label>
+        <input type="text" id="search" name="search">
+        <button type="submit">Search</button>
+    </form>
+
+    
+    <form action="/login" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        <button type="submit">Login</button>
+    </form>
+
+    
+    <form action="/user" method="get">
+        <label for="id">User ID:</label>
+        <input type="text" id="id" name="id">
+        <button type="submit">Get User Info</button>
+    </form>
+
+    
+    <form action="/user/email" method="get">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email">
+        <button type="submit">Check Email</button>
+    </form>
+</body>
+</html>

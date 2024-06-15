@@ -1,0 +1,56 @@
+In this website, we can exploit SQL injection vulnerabilities like:
+   1. Retrieving hidden data
+   2. Subverting application logic
+   3. Union attacks
+   4. Blind SQL injection
+
+1. Retrieving hidden data 
+     Modifying a SQL query to return additional results
+     For the queries similar to " SELECT * FROM users WHERE username LIKE '%${search}%' " , If we inject a true statement or "%", we can get the info for all users
+        -> In this case we can get the information of all users by entering the following:
+             => "%"
+             =>  ' OR '1'='1
+     
+2. Subverting application logic
+     Changing a query to interfere with the application's logic
+
+     -> In the website , instead of entering correct login credintials of an user, We can login without using valid login credentials.
+        Generally, the sql query for login roughly looks like " SELECT * FROM users WHERE username = '${username}' AND password = '${password}'; "
+        let us say a user has the username "Naveen" , even we don't know his password we can login into his account using his username only
+        Instead of entering "Naveen" as username, if we enter any one of the following we can login into his account:
+                  => Naveen'-- 
+                     Enter above as the username , password can be anything or you can simply ignore entering the password
+                  => Naveen' OR '1'='1
+                     Enter above as the username, password can be anything or you can simply ignore entering the password
+                  => ' OR '1'='1
+                     If we don't know both username and password, we can login to the website by entering the above in username or password
+    
+3. Union attacks  
+     Retrieving data from different database tables 
+
+     -> For the queries of format "SELECT username, email FROM users WHERE id = ${userId}" we can inject malicious sql injection code containg UNION which leads to UNION attacks
+        Instead of entering a id or any number if we enter some malicious input in place of userid, we can get information about other databases also
+           => 1' UNION patients_name , patients_number FROM health_info
+              Along with the data of the user whose id number is 1 in users table, we will also get some information of all the patients in the database health_info
+              But to perform union attack we have to make sure two things:
+                 1.Both should output same number of columns
+                 2.Corresponding columns should have same datatype contents
+              And another thing we must know is, the patients_name column in health_info will be displayed as username AND the patients_number column will be displayed as emailid (In this webiste) since the output of both the individual queries will be under same column which is mentioned in the server code
+
+
+4. Blind SQL injection
+     where the results of a query you control are not returned in the application's responses
+     Let us say, we know the email id of a user Gopal, which is "Gopal_Krishna65@gmail.com" , To find his password we can use blind SQL injection,
+         => Gopal_Krishna65@gmail.com' AND SUBSTRING((SELECT Password FROM users WHERE username='Gopal'),1,1)='q
+            Checks Whether the first letter of his password is 'q' or not
+            As the AND operation of the two predicates will be iff both the predicates are TRUE, if the first letter of his password is 'q', it returns TRUE
+            which will results in the overall value to be true 
+            So no change is observed whether we enter "Gopal_Krishna65@gmail.com" as email id or " Gopal_Krishna65@gmail.com' AND SUBSTRING((SELECT Password FROM users WHERE username='Gopal'),1,1)='q  " inplace of it
+            In this way we can find password or anyother details of the users
+     
+     
+
+
+
+
+     
