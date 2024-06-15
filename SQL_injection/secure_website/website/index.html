@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Secure Website</h1>
+    <form action="/search" method="GET">
+        <label for="search">Search Users:</label>
+        <input type="text" id="search" name="search">
+        <button type="submit">Search</button>
+    </form>
+    <form action="/login" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        <button type="submit">Login</button>
+    </form>
+    <form action="/user" method="GET">
+        <label for="id">User ID:</label>
+        <input type="text" id="id" name="id">
+        <button type="submit">Get User Info</button>
+    </form>
+    <form action="/check-email" method="POST">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email">
+        <button type="submit">Check Email</button>
+    </form>
+</body>
+</html>

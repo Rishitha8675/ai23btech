@@ -1,0 +1,19 @@
+Some of the ways/measures to escape from SQLINJECTION attack are:
+   1. Prepared Statements
+   2. Input validation
+   3. Input sanitization
+   4.Use of properly constructed stored Procedures
+
+Here I preffered first method
+A prepared statement is a way to safely interact with a database
+We should create a template for our query with placeholders instead of directly including user input
+And then provide the actual value (like the user’s input) to replace the placeholder (?).
+This is done separately, which ensures the database treats it as data, not as part of the SQL command.
+
+SELECT * FROM users WHERE id = ${userId} ---> X
+  (Vulnerable to SQL injection)
+
+SELECT * FROM users WHERE id = ? ---> _/
+  (Not Vulnerable to SQL injection)  
+
+  
