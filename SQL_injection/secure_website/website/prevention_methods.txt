@@ -16,4 +16,11 @@ SELECT * FROM users WHERE id = ${userId} ---> X
 SELECT * FROM users WHERE id = ? ---> _/
   (Not Vulnerable to SQL injection)  
 
+
+Some other methods like input validation, input sanitization, stored procedures can also be preffered.
+Input validation : Programming that ensures user input meets a system's expectations
+Input Sanitization: Programming that removes user input which could be interpreted as code
+Stored Procedures: Similar to the method prepared statements but stored procedures allow us to encapsulate a set of SQL statements and logic within a single unit.
+Stored prcedure is a precompiled collection of one ormore SQL statements stored in the database. It is similar to a function in programming that can accept parameters, execute a sequence of statements, and return results.
+
   
